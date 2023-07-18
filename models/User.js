@@ -6,22 +6,20 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
-    inPerson: {
-      type: Boolean,
+    email: {
+      type: String,
       default: true,
     },
-    startDate: {
-      type: Date,
-      default: Date.now(),
-    },
-    endDate: {
-      type: Date,
-      default: () => new Date(+new Date() + 84 * 24 * 60 * 60 * 1000),
-    },
-    students: [
+    thoughts: [
       {
         type: Schema.Types.ObjectId,
-        ref: 'Student',
+        ref: 'Thought',
+      },
+    ],
+    friends: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
       },
     ],
   },
@@ -32,7 +30,8 @@ const userSchema = new Schema(
     id: false,
   }
 );
+//TODO Create a virtual called friendCount that retrieves the length of the user's friends array field on query.
 
-const Course = model('course', courseSchema);
+const User = model('user', userSchema);
 
-module.exports = Course;
+module.exports = User;
