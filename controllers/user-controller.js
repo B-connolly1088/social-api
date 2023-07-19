@@ -22,7 +22,7 @@ const createUser = async (req, res) => {
     try {
         const userData = await User.create(req.body)
         console.log(req.body);
-        res.status(200).json("createUser")
+        res.status(200).json(userData)
     } catch (error) {
         console.log(error);
         res.status(500).json(error)
@@ -37,7 +37,7 @@ const updateOneUser = async (req, res) => {
         )
         console.log(req.params.id);
         console.log(req.body);
-        res.status(200).json("updateOneUser")
+        res.status(200).json(userData)
     } catch (error) {
         console.log(error);
         res.status(500).json(error)
@@ -46,7 +46,7 @@ const updateOneUser = async (req, res) => {
 const deleteUser = async (req, res) => {
     try {
         console.log(req.params.id);
-        res.status(200).json("deleteUser")
+        res.status(200).json(userData)
     } catch (error) {
         console.log(error);
         res.status(500).json(error)
