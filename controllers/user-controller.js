@@ -10,7 +10,7 @@ const getAllUsers = async (req, res) => {
 }
 const getOneUser = async (req, res) => {
     try {
-        const userData = await User.findById(req.params.id)
+        const userData = await User.findById(req.params.id).populate('thoughts')
         console.log(req.params.id);
         res.status(200).json(userData)
     } catch (error) {
@@ -45,6 +45,7 @@ const updateOneUser = async (req, res) => {
 }
 const deleteUser = async (req, res) => {
     try {
+        const userData = await User.findOneAndDelete({_id: req.params.id})
         console.log(req.params.id);
         res.status(200).json(userData)
     } catch (error) {

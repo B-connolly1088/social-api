@@ -1,4 +1,4 @@
-const { Thoughts } = require('../models')
+const { Thoughts, User } = require('../models')
 const getAllThoughts = async (req, res) => {
     try {
         const userData = await Thoughts.find()
@@ -20,9 +20,14 @@ const getOneThought = async (req, res) => {
 }
 const createThought = async (req, res) => {
     try {
-        const userData = await Thoughts.create(req.body)
+        const thoughtData = await Thoughts.create(req.body)
+        await User.findOneAndUpdate(
+            {userName: req.body.userName},
+            {$push: {thoughts: thoughtData._id}},
+            {new: true},
+        )
         console.log(req.body);
-        res.status(200).json(userData)
+        res.status(200).json(thoughtData)
     } catch (error) {
         console.log(error);
         res.status(500).json(error)
