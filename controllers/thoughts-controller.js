@@ -58,6 +58,26 @@ const deleteThought = async (req, res) => {
         res.status(500).json(error)
     }
 }
+const addReaction = async (req, res) => {
+    try {
+        const reactionData = await Thoughts.findByIdAndUpdate(req.params.thoughtId, 
+        {$addToSet: {reactions: req.body}}, {new: true})
+        res.status(200).json(reactionData)
+    } catch (error) {
+        console.log(error);
+        res.status(500).json(error)
+    }
+}
+const deleteReaction = async (req, res) => {
+    try {
+        const reactionData = await Thoughts.findByIdAndUpdate(req.params.thoughtId,
+            {$pull: {reactions: {reactionId: req.params.reactionId}}})
+        res.status(200).json(reactionData)
+    } catch (error) {
+        console.log(error);
+        res.status(500).json(error)
+    }
+}
 
 
-module.exports = {getAllThoughts, getOneThought, createThought, updateOneThought, deleteThought}
+module.exports = {getAllThoughts, getOneThought, createThought, updateOneThought, deleteThought, addReaction, deleteReaction}
