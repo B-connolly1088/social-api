@@ -6,6 +6,7 @@ Social Network API
 This Social Network API allows users to share thoughts and also react to other users thoughts. This project connects users across the globe to contribute to a social platform. This application was built using JavaScrypt and utilizes Express.js and Mongoose. 
 ![Screenshot](./images/Screenshot%202023-08-02%20093813.png)
 ![GitHub](https://github.com/B-connolly1088/social-api)
+![VideoSubmission](https://drive.google.com/file/d/1yFNQElAEWFPC-btpzuXYR-Zd7hjMuOGy/view)
 ## Table of Contents
 - [Usage](#Usage)
 - [License](#license)
